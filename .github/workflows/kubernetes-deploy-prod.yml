@@ -1,4 +1,4 @@
-name: Deploy to manifest to Kubernetes cluster
+name: Deploy to manifest to Kubernetes cluster - prod
 
 on:
     workflow_dispatch:
