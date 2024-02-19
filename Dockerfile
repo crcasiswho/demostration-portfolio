@@ -50,9 +50,9 @@ RUN addgroup -g "$GID" "$USERNAME" \
 RUN mkdir pb_data && chown 1000:1000 pb_data
 
 COPY --from=go-builder /app/portfolio ./
-
+RUN mkdir /data
 USER $UID
-CMD ["./portfolio", "serve", "--http=0.0.0.0:80", "--dir=/data", "--public=public"]
+CMD ["./portfolio", "serve", "--http=0.0.0.0:80", "--public=public"]
 
 
 FROM backend as all-in-one
