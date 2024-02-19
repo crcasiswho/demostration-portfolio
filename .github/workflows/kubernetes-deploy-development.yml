@@ -1,7 +1,9 @@
 name: Deploy to manifest to Kubernetes cluster
 
 on:
-    workflow_dispatch: # Manually trigger the workflow
+  push:
+    branches:
+      - main
 
 jobs:
   deploy:
@@ -21,7 +23,7 @@ jobs:
           run: doctl kubernetes cluster kubeconfig save herams-kubernetes-cluster
   
         - name: Deploy to DigitalOcean Kubernetes
-          run: kubectl apply -f kubernetes-manifests/deployment.yaml && kubectl apply -f kubernetes-manifests/ingress.yaml
+          run: kubectl apply -f kubernetes-manifests/dev/deployment.yaml && kubectl apply -f kubernetes-manifests/dev/ingress.yaml
         
         - name: Validate the application is running
           run: kubectl get all -owide -n portfolio
